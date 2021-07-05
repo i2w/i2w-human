@@ -14,6 +14,7 @@ module I2w
 
     def call(object)
       return object.to_human if object.respond_to?(:to_human)
+      return object.name.humanize if object.is_a?(Module)
       return object.name if object.respond_to?(:name)
       
       object.to_s.humanize
