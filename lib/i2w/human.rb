@@ -13,13 +13,19 @@ module I2w
       def call(object)
         return object if object.is_a?(String)
         return object.to_human if object.respond_to?(:to_human)
-        return object.model_name.human if object.respond_to?(:model_name)
-        return object.name.humanize if object.is_a?(Module)
+        return for_module(object) if object.is_a?(Module)
         return object.name if object.respond_to?(:name)
+        return object.model_name.human if object.respond_to?(:model_name)
 
         object.to_s.humanize
       end
       alias [] call
+
+      def for_module(object)
+        return object.model_name.human if object.respond_to?(:model_name)
+
+        object.name.humanize
+      end
     end
   end
 end
