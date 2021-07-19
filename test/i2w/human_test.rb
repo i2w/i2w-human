@@ -17,9 +17,9 @@ module I2w
     end
 
     test 'it returns String untouched' do
-      assert_equal "Hi There!", Human.call("Hi There!")
+      assert_equal 'Hi There!', Human.call('Hi There!')
     end
-    
+
     test 'it uses #name if it exists' do
       assert_equal 'Bingo', Human.call(Bar.new)
     end
