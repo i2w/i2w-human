@@ -13,7 +13,9 @@ module I2w
     extend self
 
     def call(object)
+      return object if object.is_a?(String)
       return object.to_human if object.respond_to?(:to_human)
+      return object.model_name.human if object.respond_to?(:model_name)
       return object.name.humanize if object.is_a?(Module)
       return object.name if object.respond_to?(:name)
       

@@ -10,6 +10,20 @@ module I2w
       end
     end
 
+    class Bar
+      def name
+        'Bingo'
+      end
+    end
+
+    test 'it returns String untouched' do
+      assert_equal "Hi There!", Human.call("Hi There!")
+    end
+    
+    test 'it uses #name if it exists' do
+      assert_equal 'Bingo', Human.call(Bar.new)
+    end
+
     test 'it uses #to_human if it exists' do
       assert_equal 'A medium sized foo', Human.call(Foo.new)
     end
